@@ -1,0 +1,247 @@
+:root {
+  --color-primary: #8527c3fd;
+  --color-primary-soft: #8527c383;
+  --color-primary-dark: #5f1192;
+  --color-white: #fff;
+  --menu-height: 80px;
+  --transition-duration: 0.5s;
+  --table-bg: #f8f8f8;
+  --table-border: 1px solid #ddd;
+  --table-header-bg: #e9e9e9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: #f7f7f7;
+  min-height: 100vh;
+}
+
+/* -------- ENCABEZADO / NAVEGACIÓN -------- */
+header.cabecer {
+  height: var(--menu-height);
+  background-color: var(--color-primary);
+  transition: background-color 0.5s ease;
+}
+
+nav.menu {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0 2em;
+}
+
+#menu_burger {
+  display: none;
+}
+
+.ul_links {
+  display: flex;
+  gap: 2em;
+  justify-content: flex-end;
+  align-items: center;
+  transition: transform var(--transition-duration) ease-in-out, opacity var(--transition-duration) ease;
+}
+
+.ul_links .il_links a {
+  color: var(--color-white);
+  transition: color var(--transition-duration) ease, background-color var(--transition-duration) ease;
+}
+
+.ul_links .il_links a:hover {
+  color: var(--color-white);
+  background-color: var(--color-primary-dark);
+}
+
+.logo {
+  color: var(--color-white);
+}
+
+.label_burger {
+  display: none;
+  cursor: pointer;
+}
+
+.burger_icono {
+  color: var(--color-white);
+  transition: transform var(--transition-duration) ease;
+}
+
+#menu_burger:checked + .label_burger .burger_icono {
+  transform: rotate(90deg);
+}
+
+#menu_burger:checked ~ .ul_links {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 500px;
+}
+
+@media (max-width: 768px) {
+  .label_burger {
+      display: block;
+  }
+
+  .ul_links {
+      position: absolute;
+      top: var(--menu-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 2rem;
+      background-color: var(--color-primary-soft);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(-20px);
+      max-height: 0;
+      overflow: hidden;
+      width: 100%;
+  }
+
+  .ul_links .il_links a {
+      font-size: 2em;
+      font-weight: bold;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: all var(--transition-duration) ease;
+  }
+
+  .ul_links .il_links a:hover {
+      background-color: var(--color-primary-dark);
+  }
+
+  #menu_burger:checked ~ .ul_links {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* -------- HORARIO UNIVERSITARIO -------- */
+.horario {
+  padding: 20px;
+  text-align: center;
+}
+
+.horario .container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: var(--table-bg);
+  border: var(--table-border);
+}
+
+th, td {
+  border: var(--table-border);
+  padding: 10px;
+  text-align: center;
+}
+
+/* -------- TASK TRACKER -------- */
+.task-tracker .container {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  max-width: 90%;
+}
+
+.task-tracker h2 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.input-group {
+  display: flex;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+input[type='text'] {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  background-color: #000;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button#addTaskBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button:hover {
+  background-color: #333;
+}
+
+ul#taskList {
+  list-style: none;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 0;
+}
+
+ul#taskList li {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+}
+
+li.completed span {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.checkbox {
+  margin-right: 10px;
+}
+
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #ce2c31;
+}
+
+.delete-btn:hover {
+  background-color: #ce2c31;
+  color: white;
+  border-radius: 5px;
+}
+
+#taskList li span {
+  flex-grow: 1;
+}
